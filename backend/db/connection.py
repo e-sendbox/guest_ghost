@@ -1,7 +1,11 @@
-"""Подключение к SQLite (шаг 0; шаг 4: + sqlite-vec)."""
+"""Подключение к SQLite (шаг 0; шаг 4: + sqlite-vec; шаг 0.2: pysqlite3 на хостингах)."""
 
-import sqlite3
 from pathlib import Path
+
+try:
+    import pysqlite3 as sqlite3
+except ImportError:
+    import sqlite3
 
 import sqlite_vec
 

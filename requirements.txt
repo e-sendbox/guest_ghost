@@ -3,4 +3,5 @@ fastapi==0.139.0
 uvicorn==0.44.0
 requests==2.33.1
 sqlite-vec==0.1.9
+pysqlite3-binary==0.5.4.post2
 PyYAML==6.0.3
