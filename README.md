@@ -61,10 +61,12 @@ python -m pytest tests/
 ## Деплой на Render
 
 1. Подключить репозиторий, тип **Web Service**, Environment **Python**.
-2. Build Command: `pip install -r requirements.txt`
-3. Start Command: `python main.py`
-4. Environment: `JINA_API_KEY`, `OLLAMA_API_KEY` (секреты), при желании `APP_STORAGE_SECRET`.
-5. Free-тир: сервис засыпает через 15 мин без трафика, первый запрос после сна ~30-60с. БД не персистентная — наполняйте через «Предзаполнить» на DevINFO.
+2. Root Directory — пусто (приложение в корне репозитория).
+3. Build Command: `pip install -r requirements.txt`
+4. Start Command: `python main.py`
+5. Health Check Path: `/api/ping`
+6. Environment: `JINA_API_KEY`, `OLLAMA_API_KEY` (секреты), при желании `APP_STORAGE_SECRET`. `PORT` задавать не нужно — Render прокидывает его сам.
+7. Free-тир: сервис засыпает через 15 мин без трафика, первый запрос после сна ~30-60с. БД не персистентная — наполняйте через «Предзаполнить» на DevINFO.
 
 ## Структура проекта
 
