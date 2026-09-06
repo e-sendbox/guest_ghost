@@ -1,0 +1,23 @@
+app:
+  mode: monolith
+  port: ${PORT:-8080}
+  title: Guest Ghost
+  api_url: http://localhost:${PORT:-8080}/api
+  storage_secret: ${APP_STORAGE_SECRET:-guest-ghost-local-secret-2026}
+logging:
+  level: DEBUG
+  log_dir: logs
+db:
+  path: data/guest_ghost.db
+llm:
+  ollama:
+    base_url: https://ollama.com
+    model: deepseek-v4-flash:0731
+    api_key_env: OLLAMA_API_KEY
+    temperature: 0.1
+embedding:
+  type: cloud            # cloud (по умолчанию, Jina) | local (запасной, Ollama)
+  provider: jina         # cloud → jina, local → ollama
+  model: jina-embeddings-v5-omni-nano
+  api_key_env: JINA_API_KEY
+  url: https://api.jina.ai/v1/embeddings

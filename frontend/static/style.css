@@ -1,0 +1,396 @@
+/* Стили интерфейса Guest Ghost (тёмная тема GitHub Chat, адаптация из Rag).
+   Единый источник правды: все стили здесь, в ui-файлах их нет. */
+
+@layer overrides {
+html, body { height: 100%; margin: 0; }
+body { background: #0d1117; color: #e6edf3; font-family: -apple-system, Segoe UI, Helvetica, Arial, sans-serif; overflow: hidden; }
+.nicegui-content { padding: 0 !important; margin: 0 !important; }
+.q-page { padding: 0 !important; background-color: #0d1117; }
+
+/* --- корневая колонка --- */
+.root-col { box-sizing: border-box; overflow: hidden; gap: 0; background: #0d1117; }
+.content-col { min-height: 0; overflow: hidden; gap: 0; box-sizing: border-box; }
+.content-col .q-tab-panel { padding: 0; height: 100%; }
+
+/* --- табы в одну строку, как папки; тень панели — по всей длине --- */
+.top-tabs { background: #05081c; border-bottom: 2px solid #253c8f; box-shadow: inset 0 -4px 8px #101f4d, inset 0 -12px 22px rgba(16,31,77,0.75), inset 0 -2px 0 #01030a, 0 6px 0 #000; padding: 8px 0 0 12px; }
+.top-tabs .q-tabs__content { gap: 4px; }
+.top-tabs .q-tab { border-radius: 10px 10px 0 0 !important; color: #9e9e9e !important; font-size: 15px !important; font-weight: 600; letter-spacing: 0.5px; min-height: 40px !important; padding: 8px 18px !important; border: 1px solid transparent; border-bottom: none; box-shadow: none !important; }
+.top-tabs .q-tab:hover { background: #080d26 !important; color: #d4d4d4 !important; }
+.top-tabs .q-tab--active { background: #0a1533 !important; border-color: #253c8f !important; color: #e6edf3 !important; box-shadow: none !important; }
+.top-tabs .q-tab__indicator { display: none; }
+.top-tabs .q-tab__content { flex-direction: row; justify-content: center; gap: 6px; }
+
+/* --- иконка отчёта на вкладке --- */
+.bell-btn { color: #9e9e9e !important; }
+.bell-btn:hover { color: #4d8fe8 !important; }
+
+/* --- фреймы страниц: заголовок и нижняя панель — одинаковый вид --- */
+.page-header, .page-footer { background: #05081c; box-shadow: inset 0 -4px 8px #101f4d, inset 0 -12px 22px rgba(16,31,77,0.75), inset 0 -2px 0 #01030a, 0 6px 0 #000; }
+.page-header { border-bottom: 2px solid #253c8f; padding: 14px 20px 10px 20px; }
+.page-footer { border-top: 2px solid #253c8f; padding: 2px 20px; overflow: visible; }
+.page-header .text-h6 { color: #9e9e9e; font-weight: 600; letter-spacing: 0.5px; }
+.page-body { flex: 1 1 auto; overflow-y: auto; min-height: 0; padding: 12px 20px; box-sizing: border-box; background: #0d1117; scrollbar-width: thin; scrollbar-color: #16244d transparent; }
+.page-body::-webkit-scrollbar { width: 6px; }
+.page-body::-webkit-scrollbar-track { background: transparent; }
+.page-body::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #05081c, #16244d); border-radius: 999px; border: 2px solid #0d1117; }
+.page-body::-webkit-scrollbar-thumb:hover { background: #1f2d5a; }
+.page-empty { color: #8b949e; font-size: 14px; }
+
+/* --- шаг 9: сетка карточек домов --- */
+.hotels-grid-area { overflow-y: auto; }
+.hotels-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; align-content: start; }
+.hotel-card { background: #161b22 !important; border: 1px solid #30363d !important; border-radius: 6px !important; box-shadow: none !important; padding: 14px 16px !important; margin: 0 !important; }
+.hotel-card-name { color: #e6edf3; font-size: 16px; font-weight: 700; }
+.hotel-card-text { color: #8b949e; font-size: 13px; line-height: 1.5; }
+.hotel-card-label { color: #c9cdd3; font-size: 13px; font-weight: 700; }
+.hotel-card-bullet-dot { color: #484f58; font-size: 13px; }
+.hotel-chip { --q-primary: #05081c !important; background-color: #05081c !important; border: none !important; border-radius: 999px !important; color: #9e9e9e !important; font-size: 13px !important; font-weight: 600 !important; padding: 3px 8px !important; margin: 0 !important; }
+.hotel-chip-light { --q-primary: #1f2d5a !important; background-color: #1f2d5a !important; color: #c9d4e8 !important; }
+
+/* --- стеклянные кнопки панелей (как в Rag: тёмный фон, синяя обводка, фаска) --- */
+.q-btn.page-btn { background: #05081c !important; border: 2px solid #253c8f !important; border-radius: 999px !important; box-shadow: inset 0 2px 0 #22387f, inset 0 -2px 0 #01030a, 0 3px 0 #000 !important; color: #9e9e9e !important; font-weight: 600; padding: 12px 36px; font-size: 18px !important; }
+.q-btn.page-btn:hover { background: #080d26 !important; border-color: #2e49a8 !important; }
+.q-btn.page-btn:active { transform: translateY(2px); box-shadow: inset 0 2px 0 #22387f, inset 0 -2px 0 #01030a, 0 1px 0 #000 !important; }
+.q-btn.page-btn .q-btn__content { color: #9e9e9e !important; }
+
+/* --- общий класс формы (попапы с формами) --- */
+.form-popup { background: #161b22 !important; border: 1px solid #30363d !important; border-radius: 0 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 2px 0 0 #253c8f, inset -2px 0 0 #253c8f !important; width: 90vw; max-width: 90vw; height: 88vh; max-height: 88vh; position: relative; display: flex; flex-direction: column; padding: 0 !important; }
+.form-popup .text-h6 { color: #e6edf3; font-weight: 600; letter-spacing: 0.5px; }
+.form-popup .text-subtitle1 { color: #9e9e9e; font-weight: 600; letter-spacing: 0.5px; }
+.form-popup .q-field__control { background: #0d1117 !important; border: 1px solid #30363d !important; border-radius: 0 !important; color: #e6edf3 !important; min-height: 28px !important; height: 28px !important; }
+.form-popup .q-field__native { color: #e6edf3 !important; padding: 0 10px !important; line-height: 28px !important; min-height: 28px !important; }
+.form-popup .q-field__native textarea { padding: 4px 0 !important; line-height: 20px !important; }
+.form-popup input, .form-popup textarea { color: #e6edf3 !important; }
+.form-popup .q-field__label { color: #8b949e !important; font-size: 12px !important; top: 5px !important; left: 10px !important; }
+.form-popup .q-field--float .q-field__label { display: none !important; }
+.form-popup .q-field--focused .q-field__label { display: none !important; }
+.form-popup .q-field--error .q-field__control { border-color: #30363d !important; }
+.form-popup .q-field--error .q-field__label { color: #f85149 !important; }
+.form-popup .q-field--error .q-field__append,
+.form-popup .q-field--error .q-field__control:after { display: none !important; }
+.form-popup .chip-field.q-field--error .q-field__control { border-color: #f85149 !important; }
+.form-popup .q-field--with-bottom { padding-bottom: 0 !important; }
+
+/* --- шапка и футер: черно-синие, как основная форма, в 2 раза уже --- */
+.popup-head, .popup-footer { background: #05081c; padding: 5px 20px; width: 100%; box-sizing: border-box; }
+.popup-head { border-top: 2px solid #253c8f; border-left: 2px solid #253c8f; border-right: 2px solid #253c8f; box-shadow: inset 0 4px 8px #101f4d, inset 0 12px 22px rgba(16,31,77,0.75), inset 0 2px 0 #01030a, 0 -6px 0 #000; }
+.popup-footer { border-bottom: 2px solid #253c8f; border-left: 2px solid #253c8f; border-right: 2px solid #253c8f; display: flex; justify-content: center; padding: 2px 20px; box-shadow: inset 0 -4px 8px #101f4d, inset 0 -12px 22px rgba(16,31,77,0.75), inset 0 -2px 0 #01030a, 0 6px 0 #000; }
+.popup-body { min-height: 0; overflow-y: auto; padding: 16px 20px; box-sizing: border-box; scrollbar-width: thin; scrollbar-color: #30363d transparent; }
+.popup-body::-webkit-scrollbar { width: 6px; }
+.popup-body::-webkit-scrollbar-track { background: transparent; }
+.popup-body::-webkit-scrollbar-thumb { background: #30363d; border-radius: 999px; }
+.popup-error { color: #f85149; font-size: 14px; padding: 0 20px; }
+
+/* --- кнопка «Сохранить» — длинная колбаса на всю ширину панели --- */
+.save-btn { width: 100% !important; padding: 1px 36px !important; font-size: 15px !important; min-height: 24px !important; }
+
+/* --- высокие поля (описание, характеристики, ограничения) --- */
+.tall-field .q-field__control { height: auto !important; min-height: 88px !important; }
+.tall-field .q-field__control-container { padding-top: 0 !important; }
+.tall-field .q-field__native { min-height: 88px !important; line-height: 20px !important; padding: 8px 10px !important; align-items: flex-start !important; }
+.tall-field .q-field__native textarea { min-height: 72px !important; }
+/* --- панели (характеристики и номерной фонд): общие стили --- */
+.panel-frame { display: flex; flex-direction: column; min-height: 0; }
+.chars-frame { height: 90px; flex: 0 0 90px; }
+.rooms-frame { height: 33%; flex: 0 0 33%; }
+.req-frame { height: 90px; flex: 0 0 90px; }
+.panel-header { flex: 0 0 auto; }
+.panel-label { color: #9e9e9e; font-size: 14px; font-weight: 400; letter-spacing: 0.3px; }
+.panel-box { background: #0d1117; border: 1px solid #30363d; border-radius: 0; padding: 8px; min-height: 0; flex: 1 1 auto; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #30363d transparent; position: relative; }
+.panel-box.error { border-color: #f85149 !important; }
+.panel-box.error .panel-empty { color: #f85149 !important; }
+.panel-box::-webkit-scrollbar { width: 6px; }
+.panel-box::-webkit-scrollbar-track { background: transparent; }
+.panel-box::-webkit-scrollbar-thumb { background: #30363d; border-radius: 999px; }
+.panel-area { gap: 8px; display: flex; flex-wrap: wrap; align-items: flex-start; }
+.panel-empty { color: #30363d !important; font-size: 48px !important; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+
+/* --- автокомплит: специфика --- */
+.auto-arrow { color: #4d8fe8 !important; font-size: 20px !important; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.auto-menu { background: #161b22 !important; border: 1px solid #30363d !important; border-radius: 0 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important; min-width: 224px; max-height: 260px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #16244d transparent; }
+.auto-menu::-webkit-scrollbar { width: 6px; }
+.auto-menu::-webkit-scrollbar-track { background: transparent; }
+.auto-menu::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #05081c, #16244d); border-radius: 999px; border: 2px solid #161b22; }
+.auto-menu::-webkit-scrollbar-thumb:hover { background: #1f2d5a; }
+.auto-menu .q-item { color: #e6edf3 !important; font-size: 14px !important; min-height: 32px !important; }
+.auto-menu .q-item:hover { background: #0d1117 !important; }
+.auto-menu .q-item--disabled { color: #8b949e !important; }
+
+/* --- спиннер number-полей: свои синие стрелки вместо браузерных --- */
+.form-popup input[type=number]::-webkit-inner-spin-button,
+.form-popup input[type=number]::-webkit-outer-spin-button { -webkit-appearance: none; appearance: none; margin: 0; display: none !important; }
+.form-popup input[type=number] { -moz-appearance: textfield; padding-right: 28px !important; }
+.spin-arrows { display: flex; flex-direction: column; justify-content: center; position: absolute; right: 4px; top: 50%; transform: translateY(-50%); pointer-events: none; }
+.spin-arrows .spin-btn { pointer-events: auto; }
+.q-btn.spin-btn { background: transparent !important; border: none !important; box-shadow: none !important; color: #4d8fe8 !important; width: 18px !important; height: 12px !important; min-width: 18px !important; min-height: 12px !important; padding: 0 !important; }
+.q-btn.spin-btn:hover { color: #7ab3f2 !important; }
+.q-btn.spin-btn .q-icon { color: #4d8fe8 !important; font-size: 15px !important; }
+.q-btn.spin-btn:hover .q-icon { color: #7ab3f2 !important; }
+
+/* --- номерной фонд: специфика --- */
+.room-card { background: #161b22 !important; border: 1px solid #30363d !important; border-radius: 0 !important; box-shadow: none !important; width: 110px; height: 64px; padding: 6px 8px !important; position: relative; display: flex; align-items: center; justify-content: center; }
+.room-title { color: #e6edf3; font-size: 14px; font-weight: 600; }
+.room-date { color: #8b949e; font-size: 12px; }
+.room-close { position: absolute; top: 2px; right: 4px; color: #f85149 !important; font-size: 14px !important; cursor: pointer; }
+.room-close:hover { color: #ff7b72 !important; }
+
+/* --- иконка календаря в поле даты --- */
+.date-icon { color: #4d8fe8 !important; font-size: 18px !important; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); cursor: pointer; pointer-events: auto; }
+.form-popup input[readonly] { cursor: pointer; }
+
+/* --- календарь (q-date): серый тёмный стиль --- */
+.date-menu { background: #161b22 !important; border: 1px solid #30363d !important; border-radius: 0 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important; }
+.q-date-dark { background: #161b22 !important; color: #e6edf3 !important; border-radius: 0 !important; }
+.q-date-dark .q-date__header { background: #0d1117 !important; border-bottom: 1px solid #30363d; }
+.q-date-dark .q-date__header .q-date__title,
+.q-date-dark .q-date__header .q-date__subtitle { color: #e6edf3 !important; }
+.q-date-dark .q-date__nav { color: #4d8fe8 !important; }
+.q-date-dark .q-date__nav button { color: #4d8fe8 !important; }
+.q-date-dark .q-date__nav button:hover { color: #7ab3f2 !important; }
+.q-date-dark .q-date__main { color: #e6edf3 !important; }
+.q-date-dark .q-date__calendar-days-container { background: #161b22 !important; }
+.q-date-dark .q-date__calendar-weekdays { color: #8b949e !important; }
+.q-date-dark .q-date__calendar-item button { color: #c9d1d9 !important; }
+.q-date-dark .q-date__calendar-item button:hover { background: #0d1117 !important; color: #e6edf3 !important; }
+.q-date-dark .q-date__calendar-item--today { color: #4d8fe8 !important; }
+.q-date-dark .q-date__calendar-item--today button { color: #4d8fe8 !important; }
+.q-date-dark .q-date__calendar-item--selected { background: #253c8f !important; border-radius: 0 !important; }
+.q-date-dark .q-date__calendar-item--selected button { color: #e6edf3 !important; }
+.q-date-dark .q-date__months-item button,
+.q-date-dark .q-date__years-item button { color: #c9d1d9 !important; }
+.q-date-dark .q-date__months-item button:hover,
+.q-date-dark .q-date__years-item button:hover { background: #0d1117 !important; color: #e6edf3 !important; }
+.q-date-dark .q-date__months-item--selected,
+.q-date-dark .q-date__years-item--selected { background: #253c8f !important; }
+.q-date-dark .q-date__months-item--selected button,
+.q-date-dark .q-date__years-item--selected button { color: #e6edf3 !important; }
+.q-date-dark .q-date__calendar-item--out button { color: #6e7681 !important; }
+
+/* --- чипы: чёрно-синие, тонкая обводка, серый текст, красный крестик удаления --- */
+html body .form-popup .q-chip,
+html body .form-popup .q-chip.bg-primary {
+    --q-primary: #05081c !important;
+    background-color: #05081c !important;
+    border: 1px solid #253c8f !important;
+    border-radius: 999px !important;
+    color: #9e9e9e !important;
+    box-shadow: inset 0 1px 0 #22387f, inset 0 -1px 0 #01030a !important;
+}
+/* Ховер не подсвечивает (перекрываем серую подложку Quasar) */
+html body .form-popup .q-chip--selected,
+html body .form-popup .q-chip--hovered,
+html body .form-popup .q-chip.bg-primary.q-chip--selected,
+html body .form-popup .q-chip.bg-primary.q-chip--hovered {
+    --q-primary: #05081c !important;
+    background-color: #05081c !important;
+}
+/* Крестик удаления — как у номеров (room-close) */
+.form-popup .q-chip .q-chip__remove,
+.form-popup .q-chip .q-chip__icon--remove {
+    color: #f85149 !important;
+    font-size: 18px !important;
+    cursor: pointer;
+    margin-left: auto;
+}
+.form-popup .q-chip .q-chip__remove:hover,
+.form-popup .q-chip .q-chip__icon--remove:hover { color: #ff7b72 !important; }
+
+/* --- маленькая круглая кнопка «+» --- */
+.q-btn.round-plus { background: #05081c !important; border: 2px solid #253c8f !important; border-radius: 50% !important; box-shadow: inset 0 2px 0 #22387f, inset 0 -2px 0 #01030a, 0 2px 0 #000 !important; color: #9e9e9e !important; width: 28px !important; height: 28px !important; min-width: 28px !important; min-height: 28px !important; padding: 0 !important; }
+.q-btn.round-plus:hover { background: #080d26 !important; border-color: #2e49a8 !important; color: #d4d4d4 !important; }
+.q-btn.round-plus .q-icon { font-size: 18px !important; }
+
+/* --- красный крестик закрытия в углу попапа --- */
+.popup-close { position: absolute; top: 10px; right: 12px; color: #f85149 !important; font-size: 22px !important; cursor: pointer; }
+.popup-close:hover { color: #ff7b72 !important; }
+
+/* --- красный крестик на карточке номера --- */
+/* (определение .room-close — в блоке «номерной фонд», строка 127) */
+
+/* --- список заявок (шаг 5) --- */
+.requests-list { gap: 8px; overflow-y: auto; }
+.request-card { display: flex; flex-direction: column; gap: 0; }
+/* лицевая плашка: 3 колонки (id | имя | информация+статусы), колонки в одну строку */
+.request-card-face { background: #1c2128; border: 1px solid #30363d; border-radius: 4px; padding: 8px 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.4); cursor: pointer; flex-wrap: nowrap !important; }
+.request-card-face:hover { background: #21262d; border-color: #4d8fe8; }
+.request-id-cell { flex: 0 0 70px; padding-right: 10px; margin-right: 10px; border-right: 1px solid #30363d; }
+.request-name-cell { flex: 0 0 200px; justify-content: center; display: flex; align-items: center; padding-right: 10px; margin-right: 10px; border-right: 1px solid #30363d; }
+.request-info-cell { flex: 1 1 auto; justify-content: flex-start; align-items: center; min-width: 0; }
+.request-info-row { flex-wrap: wrap; }
+.request-sep { color: #30363d; font-size: 12px; }
+/* дочерний фрейм под плашкой */
+.request-card-detail { background: #0d1117; border: 1px solid #30363d; border-top: none; border-radius: 0 0 4px 4px; padding: 10px 12px 10px 34px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.5); }
+.selection-item { padding: 6px 8px; background: #161b22; border: 1px solid #30363d; border-radius: 4px; flex-wrap: nowrap !important; }
+/* 3 колонки плашки дома */
+.selection-name-cell { flex: 0 0 220px; min-width: 0; justify-content: center; padding-right: 10px; margin-right: 10px; border-right: 1px solid #30363d; }
+.selection-info-cell { flex: 1 1 auto; justify-content: center; min-width: 0; }
+.request-hotel-link { color: #b3b8bf !important; font-size: 14px; font-weight: 600; text-decoration: none; }
+.request-hotel-link:hover { color: #7ab3f2 !important; text-decoration: underline; }
+.selection-props { color: #b3b8bf; font-size: 14px; line-height: 1.4; }
+.selection-props-bold { font-weight: 700; }
+.selection-comment { color: #b3b8bf; font-size: 14px; line-height: 1.4; margin-top: 2px; }
+.page-btn.small { padding: 4px 14px; font-size: 13px; }
+.request-expand-arrow { color: #4d8fe8 !important; font-size: 20px !important; cursor: pointer; flex: 0 0 auto; }
+.request-expand-arrow.disabled { color: #30363d !important; cursor: default; pointer-events: none; }
+.request-id { color: #8b949e; font-size: 12px; }
+.request-name { color: #c9cdd3; font-size: 20px; font-weight: 700; }
+.request-meta { color: #b3b8bf; font-size: 14px; white-space: nowrap; }
+.request-value { color: #bcc2c9; font-weight: 600; }
+.status-green { color: #3fb950 !important; font-weight: 600; }
+.status-red { color: #7a1f14 !important; font-weight: 600; }
+.status-orange { color: #d29922 !important; font-weight: 600; }
+.request-empty { color: #6e7681; font-size: 14px; padding: 8px 0; }
+/* выделение наилучшего варианта в развёрнутом виде: голубая рамка, фон тот же серый */
+.selection-item.best { background: #161b22; border-color: #253c8f; }
+/* миниатюрные кнопки в развёрнутом виде */
+.page-btn.tiny { padding: 1px 8px !important; font-size: 14px !important; min-height: 22px !important; border-width: 1px !important; border-radius: 4px !important; box-shadow: none !important; }
+/* круглый чип выбора дома: выбранный — синяя обводка, невыбранный — серая */
+.select-chip { --q-primary: #05081c !important; background-color: #05081c !important; border: 2px solid #253c8f !important; border-radius: 50% !important; box-shadow: inset 0 2px 0 #22387f, inset 0 -2px 0 #01030a, 0 2px 0 #000 !important; color: #9e9e9e !important; width: 40px !important; height: 40px !important; min-width: 40px !important; min-height: 40px !important; padding: 0 !important; justify-content: center !important; }
+.select-chip .q-icon { font-size: 18px !important; }
+.select-chip .q-chip__content { font-size: 12px !important; font-weight: 700 !important; line-height: 1 !important; justify-content: center !important; }
+.select-chip.unselected { border-color: #484f58 !important; box-shadow: inset 0 2px 0 #3a4048, inset 0 -2px 0 #14161a, 0 2px 0 #000 !important; }
+/* кругляш «Сформировать» в отчёте: овальный, жирная обводка, голубая стрелка */
+.report-go { border-radius: 50% !important; border-width: 4px !important; width: 48px !important; height: 40px !important; min-width: 48px !important; min-height: 40px !important; }
+.report-go .q-icon { font-size: 24px !important; color: #4d8fe8 !important; font-weight: 700 !important; margin: 0 auto !important; }
+.report-go .q-chip__content { flex: 0 0 0 !important; }
+.select-label { color: #c9cdd3; font-size: 13px; cursor: pointer; }
+.select-label:hover { color: #7ab3f2; }
+.select-label.selected { color: #6e7681; cursor: default; }
+.select-label.selected:hover { color: #6e7681; }
+/* кругляш «никуда не заселять»: чёрно-бордовая обводка */
+.select-chip.nohome { border-color: #7a1f14 !important; box-shadow: inset 0 2px 0 #5c1a10, inset 0 -2px 0 #1a0704, 0 2px 0 #000 !important; }
+.select-label.nohome { color: #9e9e9e; }
+/* внутри попапов (форма бронирования) перекрываем обводку чипов form-popup */
+html body .form-popup .select-chip.nohome { background-color: #05081c !important; border: 2px solid #7a1f14 !important; box-shadow: inset 0 2px 0 #5c1a10, inset 0 -2px 0 #1a0704, 0 2px 0 #000 !important; }
+
+/* --- лист бронирования (шаг 7) --- */
+.booking-hotel-name { color: #9e9e9e; font-size: 16px; font-weight: 700; margin-top: 4px; }
+.booking-ghosts { padding-left: 24px; }
+/* плашка приведения в листе: 3 колонки с палочками, колонки в одну строку */
+.booking-face { border: 1px solid #30363d; border-radius: 4px; padding: 6px 8px; background: #161b22; flex-wrap: nowrap !important; }
+.booking-name-cell { flex: 0 0 160px; min-width: 0; align-items: center; display: flex; padding-right: 10px; margin-right: 10px; border-right: 1px solid #30363d; }
+.booking-info-cell { flex: 1 1 auto; min-width: 0; padding-right: 10px; margin-right: 10px; border-right: 1px solid #30363d; }
+.booking-info-row { flex-wrap: wrap; }
+.booking-actions-cell { flex: 0 0 316px; display: flex; align-items: center; }
+.booking-actions-cell .q-row { flex-wrap: nowrap !important; }
+.booking-ghost-name { color: #c9cdd3; font-size: 14px; font-weight: 600; }
+.booking-room-select { flex: 0 0 260px; font-size: 13px; }
+.booking-room-menu { min-width: 260px; }
+body .q-tooltip { background: #1c2128 !important; color: #c9cdd3 !important; font-size: 12px !important; border: 1px solid #30363d !important; border-radius: 4px !important; box-shadow: 0 4px 12px rgba(0,0,0,0.6) !important; }
+.booking-room-select .q-field__native { color: #b3b8bf !important; cursor: pointer; }
+.booking-room-select .q-field__label { color: #8b949e !important; }
+.booking-room-select .q-field__control { background: #0d1117 !important; border: 1px solid #30363d !important; }
+.booking-room-select .q-field__control:hover { border-color: #4d8fe8 !important; }
+.booking-room-select.q-field--error .q-field__control { border-color: #f85149 !important; }
+body .q-menu .q-item { font-size: 13px; color: #c9cdd3 !important; }
+body .q-menu .q-item--active { color: #e6edf3 !important; background: #253c8f !important; }
+
+/* --- отчёт о заселениях (шаг 8) --- */
+.report-mode-select { flex: 0 0 347px; font-size: 13px; }
+.report-mode-menu { min-width: 347px; }
+.report-mode-select .q-field__native { color: #b3b8bf !important; cursor: pointer; }
+.report-mode-select .q-field__label { color: #8b949e !important; }
+.report-mode-select .q-field__control { background: #0d1117 !important; border: 1px solid #30363d !important; }
+.report-mode-select .q-field__control:hover { border-color: #4d8fe8 !important; }
+.report-mode-select.q-field--error .q-field__control { border-color: #f85149 !important; }
+.report-panel { background: #0d1117; border: 1px solid #30363d; border-radius: 4px; padding: 8px; min-height: 0; }
+.report-area { overflow-y: auto; }
+.report-head { border-bottom: 1px solid #30363d; padding-bottom: 4px; }
+.report-row { border-bottom: 1px solid #21262d; padding: 3px 0; }
+.report-cell { flex: 1 1 0; min-width: 0; color: #8b949e; font-size: 13px; }
+.report-row .report-cell { padding-left: 8px; }
+.report-cell-head { color: #9aa4b2; font-weight: 700; }
+.report-cell-sub { font-weight: 400; }
+.report-cell-group { text-align: center; }
+.report-cell-center { text-align: center; }
+.report-cell-empty { visibility: hidden; }
+.report-head-sub { border-bottom: none; padding-bottom: 0; }
+.report-cell-funnel { background: rgba(77, 143, 232, 0.06); }
+.report-cell-problem { background: rgba(248, 81, 73, 0.05); }
+.report-link { text-decoration: none; cursor: pointer; }
+.report-link:hover { color: #4d8fe8 !important; text-decoration: underline; }
+.page-filter-tag { color: #4d8fe8; font-size: 14px; font-weight: 600; }
+.report-cell-w1 { flex: 1 1 0; }
+.report-cell-w2 { flex: 2 1 0; }
+.report-cell-w3 { flex: 3 1 0; }
+.report-grid { display: grid; grid-template-columns: repeat(6, 1fr); }
+.report-grid-7 { display: grid; grid-template-columns: repeat(7, 1fr); }
+.report-cell-span3 { grid-column: span 3; }
+.report-cell-span2 { grid-column: span 2; }
+.report-cell-analytics { background: rgba(63, 185, 80, 0.05); }
+
+/* --- компактный попап результата (по центру, черно-синий стиль) --- */
+.result-popup { background: #161b22 !important; border: 2px solid #253c8f !important; border-radius: 0 !important; box-shadow: 0 8px 24px rgba(0,0,0,0.6), inset 2px 0 0 #253c8f, inset -2px 0 0 #253c8f !important; min-width: 320px; max-width: 440px; padding: 24px 28px; }
+.result-popup-text { color: #e6edf3; font-size: 14px; line-height: 1.5; text-align: center; }
+.result-popup .page-btn { padding: 8px 28px; font-size: 15px; }
+.result-popup .q-spinner { color: #4d8fe8 !important; }
+
+/* --- шаг 11: панель локальных фильтров в заголовке --- */
+.lfilter-groups { margin-left: auto; display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; }
+.lfilter-groups .local-filters { margin-left: 0; }
+.local-filters { margin-left: auto; display: flex; align-items: center; gap: 6px; padding-left: 12px; border-left: 1px solid #253c8f; flex-wrap: nowrap; }
+.lfilter-btn { background: #0d1117 !important; border: 1px solid #30363d !important; border-radius: 50% !important; color: #9e9e9e !important; width: 28px !important; height: 28px !important; min-width: 28px !important; min-height: 28px !important; padding: 0 !important; box-shadow: none !important; position: relative; }
+.lfilter-btn.oval { border-radius: 999px !important; width: 50px !important; min-width: 50px !important; }
+.lfilter-btn .q-icon { font-size: 16px !important; }
+.lfilter-btn:hover { color: #4d8fe8 !important; border-color: #4d8fe8 !important; }
+.lfilter-btn.active { color: #4d8fe8 !important; border-color: #4d8fe8 !important; }
+.sort-main-icon { font-size: 16px !important; }
+.sort-arrow { position: absolute; right: 3px; top: 50%; transform: translateY(-50%); font-size: 10px !important; color: #4d8fe8 !important; }
+.lfilter-menu { background: #161b22 !important; border: 1px solid #30363d !important; border-radius: 8px !important; box-shadow: 0 8px 24px rgba(0,0,0,0.6) !important; min-width: 150px; max-height: 260px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #16244d transparent; padding: 6px 0 !important; }
+.lfilter-menu::-webkit-scrollbar { width: 6px; }
+.lfilter-menu::-webkit-scrollbar-track { background: transparent; }
+.lfilter-menu::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #05081c, #16244d); border-radius: 999px; border: 2px solid #161b22; }
+.lfilter-menu::-webkit-scrollbar-thumb:hover { background: #1f2d5a; }
+.lfilter-menu .q-item { color: #e6edf3 !important; font-size: 13px !important; line-height: 1.1 !important; }
+.lfilter-menu .q-item:hover { background: #0d1117 !important; }
+.lfilter-menu .q-item > .q-focus-helper, .lfilter-menu .q-item .q-item__section--side { min-height: 0 !important; }
+.lfilter-menu .q-checkbox { min-height: 20px !important; padding: 0 !important; }
+.lfilter-menu .q-checkbox .q-checkbox__label { color: #e6edf3 !important; font-size: 13px !important; line-height: 1.1 !important; padding-left: 8px !important; }
+.lfilter-menu .q-checkbox__inner { font-size: 16px !important; }
+.lfilter-menu .q-checkbox__inner--falsy { color: #9aa4b2 !important; }
+.lfilter-menu .q-checkbox__inner--truthy { color: #4d8fe8 !important; }
+.lfilter-search { flex: 0 0 220px; font-size: 12px; }
+.lfilter-search .q-field__native { color: #b3b8bf !important; min-height: 28px !important; padding: 0 10px !important; }
+.lfilter-search .q-field__label { color: #6e7681 !important; font-size: 12px !important; top: 50% !important; transform: translateY(-50%) !important; left: 10px !important; }
+.lfilter-search.q-field--float .q-field__label { display: none !important; }
+.lfilter-search.q-field--focused .q-field__label { display: none !important; }
+.lfilter-search .q-field__control { background: #0d1117 !important; border: 1px solid #30363d !important; border-radius: 999px !important; min-height: 28px !important; height: 28px !important; }
+.lfilter-search .q-field__control:hover { border-color: #4d8fe8 !important; }
+.lfilter-btn.fill-btn { border-radius: 999px !important; width: 150px !important; min-width: 150px !important; height: 28px !important; min-height: 28px !important; padding: 0 12px !important; font-size: 12px !important; color: #9e9e9e !important; }
+.lfilter-btn.fill-btn:hover { color: #4d8fe8 !important; }
+.lfilter-btn.fill-btn.active { color: #4d8fe8 !important; border-color: #4d8fe8 !important; }
+.lfilter-menu .q-item.fill-item.active { color: #4d8fe8 !important; }
+
+/* --- шаг 13: дерево PLAN.md на DevINFO --- */
+.plan-node { border-left: 1px solid #21262d; }
+.plan-head { cursor: pointer; padding: 3px 6px; border-radius: 3px; }
+.plan-head:hover { background: #161b22; }
+.plan-arrow { color: #4d8fe8 !important; font-size: 18px !important; flex: 0 0 auto; }
+.plan-title { color: #c9cdd3; font-size: 15px; font-weight: 600; }
+.plan-children { padding-left: 14px; }
+.plan-body { color: #8b949e; font-size: 12px; line-height: 1.5; white-space: pre-wrap; padding: 2px 6px 4px 10px; }
+.plan-body-row { flex-wrap: wrap; align-items: baseline; padding-left: 34px; }
+.plan-bold { color: #c9cdd3; font-weight: 700; }
+.plan-inline-code { font-family: monospace; color: #c9cdd3; background: #0d1117; border: 1px solid #30363d; border-radius: 3px; padding: 0 4px; }
+.plan-bullet { color: #4d8fe8; padding-right: 2px; }
+.plan-number { color: #4d8fe8; font-weight: 600; }
+.plan-code { font-family: monospace; color: #c9cdd3; font-size: 12px; line-height: 1.4; white-space: pre-wrap; background: #0d1117; border: 1px solid #30363d; border-radius: 3px; padding: 4px 8px; margin: 2px 6px 4px 34px; }
+
+/* --- прелоадер-облачко (списки заявок/домов) --- */
+.requests-list, .hotels-grid-area { position: relative; }
+.ghost-loader { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 48px 0; }
+.ghost-loader-cloud { position: relative; width: 120px; height: 80px; animation: ghost-pulse 2.4s ease-in-out infinite; }
+.ghost-puff { position: absolute; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #4d8fe8, #253c8f 60%, #101f4d); filter: blur(1.5px); opacity: 0.85; }
+.ghost-puff-1 { width: 46px; height: 46px; left: 8px; top: 30px; animation: ghost-orbit-1 3.2s ease-in-out infinite; }
+.ghost-puff-2 { width: 38px; height: 38px; left: 40px; top: 12px; animation: ghost-orbit-2 2.6s ease-in-out infinite; }
+.ghost-puff-3 { width: 42px; height: 42px; left: 66px; top: 28px; animation: ghost-orbit-3 3.8s ease-in-out infinite; }
+.ghost-puff-4 { width: 26px; height: 26px; left: 34px; top: 44px; animation: ghost-orbit-4 2.2s ease-in-out infinite; }
+.ghost-loader-text { color: #8b949e; font-size: 14px; letter-spacing: 0.5px; }
+
+@keyframes ghost-orbit-1 { 0%, 100% { transform: translate(0, 0) scale(1); } 25% { transform: translate(6px, -8px) scale(1.08); } 50% { transform: translate(0, -14px) scale(0.96); } 75% { transform: translate(-6px, -6px) scale(1.05); } }
+@keyframes ghost-orbit-2 { 0%, 100% { transform: translate(0, 0) scale(1); } 30% { transform: translate(-8px, 6px) scale(1.1); } 60% { transform: translate(4px, 10px) scale(0.94); } }
+@keyframes ghost-orbit-3 { 0%, 100% { transform: translate(0, 0) scale(1); } 20% { transform: translate(8px, 4px) scale(0.95); } 55% { transform: translate(-4px, -10px) scale(1.1); } 80% { transform: translate(2px, 6px) scale(1); } }
+@keyframes ghost-orbit-4 { 0%, 100% { transform: translate(0, 0) scale(1); } 40% { transform: translate(10px, -4px) scale(1.12); } 70% { transform: translate(-6px, 8px) scale(0.9); } }
+@keyframes ghost-pulse { 0%, 100% { opacity: 0.75; } 50% { opacity: 1; } }
+}
